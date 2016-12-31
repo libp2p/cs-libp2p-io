@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LibP2P.IO")]
-[assembly: AssemblyDescription("libp2p io")]
+[assembly: AssemblyTitle("LibP2P.IO.Tests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("tabrath")]
-[assembly: AssemblyProduct("LibP2P.IO")]
-[assembly: AssemblyCopyright("Copyright © tabrath 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("LibP2P.IO.Tests")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("739c515d-f093-4961-b05a-14a1e6a01afe")]
+[assembly: Guid("833bf4c5-0618-47ed-b48e-dec16bfe420b")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,6 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.1.0")]
-[assembly: AssemblyFileVersion("0.0.1.0")]
-[assembly: AssemblyInformationalVersion("0.0.1")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
