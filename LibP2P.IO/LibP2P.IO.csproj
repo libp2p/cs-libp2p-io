@@ -34,6 +34,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IByteReader.cs" />
+    <Compile Include="IByteScanner.cs" />
+    <Compile Include="IByteWriter.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="ICloser.cs" />
     <Compile Include="IReader.cs" />
