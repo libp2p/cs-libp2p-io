@@ -1,16 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 using Moq;
-using NUnit.Framework;
+using Xunit;
 
 namespace LibP2P.IO.Tests
 {
-    [TestFixture]
     public class InterfaceTests
     {
-        [Test]
+        private static void GenerateRandomBytes(byte[] data)
+        {
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(data);
+            }
+        }
+
+        [Fact]
         public void Closer_Test()
         {
             var closed = false;
@@ -18,15 +23,15 @@ namespace LibP2P.IO.Tests
             closer.Setup(c => c.Close()).Callback(() => closed = true);
             closer.Object.Close();
 
-            Assert.That(closed, Is.True);
+            Assert.True(closed);
         }
 
-        [Test]
+        [Fact]
         public void Reader_Test()
         {
             var data = new byte[4096];
             var dataOffset = 0;
-            TestContext.CurrentContext.Random.NextBytes(data);
+            GenerateRandomBytes(data);
             var reader = new Mock<IReader>();
             reader.Setup(r => r.Read(It.IsAny<byte[]>(), It.IsAny<int>(), It.IsAny<int>()))
                 .Returns<byte[], int, int>((buffer, offset, count) =>
@@ -44,12 +49,12 @@ namespace LibP2P.IO.Tests
                 total += reader.Object.Read(buf, total, 512);
             }
 
-            Assert.That(total, Is.EqualTo(data.Length));
-            Assert.That(dataOffset, Is.EqualTo(data.Length));
-            Assert.That(buf, Is.EqualTo(data));
+            Assert.Equal(total, data.Length);
+            Assert.Equal(dataOffset, data.Length);
+            Assert.Equal(buf, data);
         }
 
-        [Test]
+        [Fact]
         public void Writer_Test()
         {
             var data = new byte[4096];
@@ -65,16 +70,16 @@ namespace LibP2P.IO.Tests
                 });
 
             var buf = new byte[data.Length];
-            TestContext.CurrentContext.Random.NextBytes(buf);
+            GenerateRandomBytes(buf);
             var total = 0;
             while (total < data.Length)
             {
                 total += writer.Object.Write(buf, total, 512);
             }
 
-            Assert.That(total, Is.EqualTo(data.Length));
-            Assert.That(dataOffset, Is.EqualTo(data.Length));
-            Assert.That(buf, Is.EqualTo(data));
+            Assert.Equal(total, data.Length);
+            Assert.Equal(dataOffset, data.Length);
+            Assert.Equal(buf, data);
         }
     }
 }
